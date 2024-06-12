@@ -1,0 +1,156 @@
+{
+	"info": {
+		"_postman_id": "7de06772-8ff0-4698-b4ee-8c9265dc5260",
+		"name": "CloudBees Test",
+		"description": "Collection of APIs to perform various operations in Train Ticketing system.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36259427"
+	},
+	"item": [
+		{
+			"name": "Create Ticket",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"trainId\": 1,\n    \"passenger\": {\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"email\": \"john.doe@detail.com\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/{{uri}}/booking/create",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"{{uri}}",
+						"booking",
+						"create"
+					]
+				},
+				"description": "Request to create new ticket and return PNR and seat detail for the input user."
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch Ticket By User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"passenger\": {\n        \"email\": \"john.doe@detail.com\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/{{uri}}/booking/fetch",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"{{uri}}",
+						"booking",
+						"fetch"
+					]
+				},
+				"description": "Get the tickets created for the given user."
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch Passenger Manifest",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"trainId\": 1,\n    \"sectionName\": \"B\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/{{uri}}/booking/manifest",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"{{uri}}",
+						"booking",
+						"manifest"
+					]
+				},
+				"description": "Get passenger manifest information against each Section."
+			},
+			"response": []
+		},
+		{
+			"name": "Update Seat By PNR",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/{{uri}}/booking/update/1718208850465",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"{{uri}}",
+						"booking",
+						"update",
+						"1718208850465"
+					]
+				},
+				"description": "Update the assigned seat for the given user."
+			},
+			"response": []
+		},
+		{
+			"name": "Cancel Ticket",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"trainId\": 1,\n    \"passenger\": {\n        \"email\": \"john.doe@detail.com\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/{{uri}}/booking/cancel",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"{{uri}}",
+						"booking",
+						"cancel"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
