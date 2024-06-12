@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.cloudbees.test.ticket.ticket.entity.Passenger;
 import com.cloudbees.test.ticket.ticket.request.model.BookingRequest;
 import com.cloudbees.test.ticket.ticket.request.model.PassengerManifestRequest;
 import com.cloudbees.test.ticket.ticket.response.model.BookingResponse;
