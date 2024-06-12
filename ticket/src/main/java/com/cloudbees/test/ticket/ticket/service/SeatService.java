@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cloudbees.test.ticket.ticket.entity.Seat;
 import com.cloudbees.test.ticket.ticket.repository.SeatRepository;
@@ -30,6 +31,11 @@ public class SeatService {
 
     public Seat saveSeat(Seat seat) {
         return seatRepository.save(seat);
+    }
+
+    @Transactional
+    public void releaseSeat(Long trainId, String email) {
+        seatRepository.releaseSeat(trainId, email);
     }
 
 }

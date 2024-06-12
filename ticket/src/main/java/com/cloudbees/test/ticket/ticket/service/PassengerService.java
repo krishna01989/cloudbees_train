@@ -1,7 +1,6 @@
 package com.cloudbees.test.ticket.ticket.service;
 
 import org.springframework.stereotype.Service;
-
 import com.cloudbees.test.ticket.ticket.entity.Passenger;
 import com.cloudbees.test.ticket.ticket.repository.PassengerRepository;
 
@@ -18,7 +17,12 @@ public class PassengerService {
         return passengerRepository.save(passenger);
     }
 
-    public Passenger getPassengerByEmail(String email) {
+    public boolean isPassengerExist(String email) {
+        return passengerRepository.existByEmail(email);
+    }
+
+    public Passenger getByEmail(String email) {
         return passengerRepository.findByEmail(email);
     }
+
 }
