@@ -7,8 +7,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cloudbees.test.ticket.ticket.entity.Passenger;
 import com.cloudbees.test.ticket.ticket.request.model.BookingRequest;
+import com.cloudbees.test.ticket.ticket.request.model.PassengerManifestRequest;
 import com.cloudbees.test.ticket.ticket.response.model.BookingResponse;
+import com.cloudbees.test.ticket.ticket.response.model.PassengerManifestResponse;
 import com.cloudbees.test.ticket.ticket.service.BookingService;
 
 @RestController
@@ -39,6 +42,11 @@ public class BookingController {
     @PostMapping("update/{pnr}")
     public BookingResponse updateSeat(@PathVariable String pnr) {
         return bookingService.updateSeat(pnr);
+    }
+
+    @PostMapping("manifest")
+    public PassengerManifestResponse getPassengerManifest(@RequestBody PassengerManifestRequest request) {
+        return bookingService.getPassengerManifest(request.getTrainId(), request.getSectionName());
     }
 
 }

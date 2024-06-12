@@ -13,6 +13,7 @@ import com.cloudbees.test.ticket.ticket.exception.ServiceException;
 import com.cloudbees.test.ticket.ticket.request.validator.BookingRequestValidator;
 import com.cloudbees.test.ticket.ticket.response.model.Booking;
 import com.cloudbees.test.ticket.ticket.response.model.BookingResponse;
+import com.cloudbees.test.ticket.ticket.response.model.PassengerManifestResponse;
 
 @Service
 public class BookingService {
@@ -127,10 +128,22 @@ public class BookingService {
                 availableSeat.setOccupied(true);
                 ticket.setSeat(availableSeat);
                 ticketService.saveTicket(ticket);
-                
+
             }
         }
         return createBookingResponse(ticket);
+    }
+
+    public PassengerManifestResponse getPassengerManifest(Long trainId, String sectionName) {
+        return PassengerManifestResponse
+                .builder().manifests(ticketService.getTicketsByTrainIdAndSectionName(trainId, sectionName).stream()
+                        .map(ticket -> com.cloudbees.test.ticket.ticket.response.model.Manifest.builder()
+                                .pnr(ticket.getPnr()).seat(ticket.getSeat().getSeatNumber())
+                                .firstName(ticket.getPassenger().getFirstName())
+                                .lastName(ticket.getPassenger().getLastName())
+                                .email(ticket.getPassenger().getEmail()).build())
+                        .collect(Collectors.toList()))
+                .build();
     }
 
 }

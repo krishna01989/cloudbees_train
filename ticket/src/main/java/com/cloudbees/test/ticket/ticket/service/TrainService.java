@@ -1,8 +1,8 @@
 package com.cloudbees.test.ticket.ticket.service;
 
 import org.springframework.stereotype.Service;
-
 import com.cloudbees.test.ticket.ticket.entity.Train;
+import com.cloudbees.test.ticket.ticket.exception.ServiceException;
 import com.cloudbees.test.ticket.ticket.repository.TrainRepository;
 
 @Service
@@ -14,6 +14,6 @@ public class TrainService {
     }
 
     public Train getTrain(Long trainId) {
-        return trainRepository.findById(trainId).orElseThrow(() -> new RuntimeException("Train not found"));
+        return trainRepository.findById(trainId).orElseThrow(() -> new ServiceException("Train not found"));
     }
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.cloudbees.test.ticket.ticket.entity.Ticket;
+import com.cloudbees.test.ticket.ticket.exception.ServiceException;
 import com.cloudbees.test.ticket.ticket.repository.TicketRepository;
 
 @Service
@@ -36,6 +37,15 @@ public class TicketService {
 
     public Ticket getTicketByPnr(String pnr) {
         return ticketRepository.getByPnr(pnr);
+    }
+
+    public List<Ticket> getTicketsByTrainIdAndSectionName(Long trainId, String sectionName) {
+        List<Ticket> tickets = ticketRepository.getByTrainIdAndSectionName(trainId, sectionName);
+        // if tickets is empty then throw exception
+        if (tickets.isEmpty()) {
+            throw new ServiceException("No tickets found for the given train id and section name");
+        }
+        return tickets;
     }
 
 }

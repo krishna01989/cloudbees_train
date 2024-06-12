@@ -1,9 +1,7 @@
 package com.cloudbees.test.ticket.ticket.repository;
 
 import com.cloudbees.test.ticket.ticket.entity.Ticket;
-
 import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -33,6 +31,7 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
     // JPQL query to get Ticket for passenger email id
     String GET_BY_PASSENGER_EMAIL_ID = "SELECT t FROM Ticket t WHERE t.passenger.email = :email";
 
+    // repository method to execute GET_BY_PASSENGER_EMAIL_ID
     @Query(GET_BY_PASSENGER_EMAIL_ID)
     List<Ticket> getByPassengerEmail(@Param("email") String email);
 
@@ -49,7 +48,15 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
     // JPQL query to get Ticket by pnr
     String GET_BY_PNR_ID = "SELECT t FROM Ticket t WHERE t.pnr = :pnr and t.status='CONFIRMED'";
 
+    // repository method to execute GET_BY_PNR_ID
     @Query(GET_BY_PNR_ID)
     Ticket getByPnr(@Param("pnr") String pnr);
+
+    // JPQL query to get Ticket by Train id and Section name
+    String GET_BY_TRAIN_ID_AND_SECTION_NAME = "SELECT t FROM Ticket t WHERE t.train.id = :trainId and t.seat.section.name = :sectionName and t.status='CONFIRMED'";
+
+    // repository method to execute GET_BY_TRAIN_ID_AND_SECTION_NAME
+    @Query(GET_BY_TRAIN_ID_AND_SECTION_NAME)
+    List<Ticket> getByTrainIdAndSectionName(@Param("trainId") Long trainId, @Param("sectionName") String sectionName);
 
 }
