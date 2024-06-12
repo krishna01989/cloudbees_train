@@ -1,0 +1,15 @@
+{
+	"id": "bad8043b-7010-4f85-8d87-f424ce3bb923",
+	"values": [
+		{
+			"key": "uri",
+			"value": "ticket-api/v1",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"name": "Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2024-06-12T19:34:29.747Z",
+	"_postman_exported_using": "Postman/11.1.25"
+}
